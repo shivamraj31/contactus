@@ -1,0 +1,46 @@
+import 'dart:io';
+
+void main() {
+  while (true) {
+    print("Enter an operation (+, -, *, /) or 'q' to quit:");
+    String operation = stdin.readLineSync() ?? "";
+    
+    if (operation == 'q') {
+      break;
+    }
+    
+    if (!['+', '-', '*', '/'].contains(operation)) {
+      print("Invalid operation. Please enter +, -, *, or /.");
+      continue;
+    }
+    
+    print("Enter the first number:");
+    double num1 = double.tryParse(stdin.readLineSync() ?? "") ?? 0.0;
+    
+    print("Enter the second number:");
+    double num2 = double.tryParse(stdin.readLineSync() ?? "") ?? 0.0;
+    
+    double result = 0.0;
+    
+    switch (operation) {
+      case '+':
+        result = num1 + num2;
+        break;
+      case '-':
+        result = num1 - num2;
+        break;
+      case '*':
+        result = num1 * num2;
+        break;
+      case '/':
+        if (num2 == 0) {
+          print("Division by zero is not allowed.");
+          continue;
+        }
+        result = num1 / num2;
+        break;
+    }
+    
+    print("Result: $result");
+  }
+}
